@@ -26,16 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(directions => {
                 navigateLabyrinth(directions)
                     .then(message => {
+                    })
                         // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
+                        .catch(error => { 
+                        console.error('Error fetching the directions:',error);
+                        document.getElementById("room3Result").textContent = 'Failed to load the directions data.';
                     });
             });
-    });
-});
+ });
 
 function findMostRecentBook(books) {
-    // 🪲 Bug: Logic error
-    return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+    // 🪲 Bug: Logic error corrected,compare for newer date
+    return books.reduce((mostRecent, book) => new Date(book.published) > new Date(mostRecent.published) ? book : mostRecent);
 }
 
 function findIntersection(setA, setB) {
