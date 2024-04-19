@@ -21,8 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 🪲 Bug: Asynchronous function ?
     document.getElementById("solveRoom3").addEventListener("click", () => {
-        fetch('directions.json') 
-            .then(response => response.json())
+        fetch('directions.json')
+        then(reponse =>response.json()) 
+           .then(directions => {
+        navigateLavyrinth(directions)
+        .then(message => {
             //🪲 Bug :changed method from innerHTML to textcontent
           document.getElementbyId("room3Resilt").textcontent = message;
             //.catch(error => {
