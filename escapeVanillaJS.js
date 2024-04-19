@@ -23,9 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("solveRoom3").addEventListener("click", () => {
         fetch('directions.json') 
             .then(response => response.json())
-            .then(directions => {
-                navigateLabyrinth(directions)
-                    .then(message => {
+            //🪲 Bug :changed method from innerHTML to textcontent
+          document.getElementbyId("room3Resilt").textcontent = message;
+            //.catch(error => {
+               // console.error('Error in navigateLabyrinth:',error);
+             //document.getElementById("room3Results").textContent = 'Failed to load the directions data.';
+            }) 
+                .catch(error => {
+                        console.error('Error in navigateLabyrinth:',error);
+                        document.getElementById("room3Result").textcontent = 'Failed to navigate the labyrinth.';
+                    });
                     })
                         // 🪲 Bug: Incorrect method
                         .catch(error => { 
