@@ -6,17 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(books => {
                 const mostRecentBook = findMostRecentBook(books);
                 // 🪲 Bug: Incorrect element ID
+                //Fix :Corrected the element ID to match the expexted HTML element ID
                 document.getElementById("resultRoom1").textContent = `The key to the next room is: ${mostRecentBook.title}`;
             });
     });
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
         const jsConcepts = new Set(['closure', 'scope', 'hoisting']);
+        //🪲Bug: Missing async and promisses cincept from javascript concepts. 
+        jsConcepts.add('async');
+        jsConcepts.add('promises');
         // 🪲 Bug: What's mssing from JS concepts?
+
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
-        // 🪲 Bug: Incorrect function call
-        const commonConcepts = findIntersection(jsConcepts, jsConcepts);
+        // 🪲 Bug: Incorrect function call,findIntersection should use jsConcept `and` reactConcepts
+        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
+    
     });
 
     // 🪲 Bug: Asynchronous function ?
